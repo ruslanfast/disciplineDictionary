@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('layout/app');
+    return view('index');
 });
+
+// Маршруты аутентификации...
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
