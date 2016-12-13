@@ -3,6 +3,7 @@
 namespace disciplineDictionary\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $disciplines = DB::table('disciplines')
+                         ->join('departments', 'disciplines.department_id', '=', 'departments.id')
+                         ->select('disciplines.name', 'disciplines.academic_time', 'departments.name as depart_name')
+                         ->get();
+
+        return view('admin.index', ['disciplines' => $disciplines]);
     }
 }
