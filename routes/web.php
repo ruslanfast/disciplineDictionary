@@ -43,6 +43,6 @@ Route::delete('/admin/delete-department', 'DepartmentController@destroy');
  */
 Route::get('/admin/add-discipline', 'DisciplineController@index');
 Route::post('/admin/add-discipline', 'DisciplineController@store');
-Route::get('/admin/edit-discipline', 'DisciplineController@getData');
-Route::post('/admin/edit-discipline', 'DisciplineController@edit');
-Route::delete('/admin/delete-discipline','DisciplineController@destroy');
+Route::post('/admin/edit-discipline/{id}', 'DisciplineController@edit');
+Route::post('/admin/update-discipline/{id}', 'DisciplineController@update');
+Route::delete('/admin/delete-discipline/{id}','DisciplineController@destroy');

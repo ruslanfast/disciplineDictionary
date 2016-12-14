@@ -76,12 +76,18 @@
                 <h3>Поиск</h3>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8">
+                {{--<ul class="nav nav-tabs">--}}
+                    {{--<li role="presentation" class="active"><a href="#">Стартова</a></li>--}}
+                    {{--<li role="presentation"><a href="#">Профіль</a></li>--}}
+                    {{--<li role="presentation"><a href="#">Повідомлення</a></li>--}}
+                {{--</ul>--}}
                 <table class="table table-scriped task-table">
                     <thead>
                     <tr>
                         <th class="text-center">Назва дисципліни</th>
                         <th class="text-center">Факультет</th>
-                        <th class="text-center">Детальна інформація</th>
+                        <th class="text-center">Редагування</th>
+                        <th class="text-center">Видалення</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -94,13 +100,25 @@
                                 <div class="text-center">{{ $discipline->depart_name  }}</div>
                             </td>
                             <td>
-                                <form action="" method="post">
-                                    <input type="hidden" name="_token" value="IUidFe5d1LbIgO0wkqMlKS9cCiPZhZA9QkGwobJI">
-                                    <input type="hidden" name="_method" value="DELETE">
+                                <form action="{{ url("/admin/edit-discipline/$discipline->id") }}" method="post">
+                                    {{ csrf_field() }}
                                     <div class="row">
                                         <div class="col-md-3 col-lg-3 col-xs-3"></div>
                                         <div class="col-md-4 col-lg-4 col-xs-4">
-                                            <button class="btn btn-sm btn-success text-center">Детальніше</button>
+                                            <button class="btn btn-sm btn-primary text-center">Редагувати</button>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4 col-xs-4"></div>
+                                    </div>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="{{ url("/admin/delete-discipline/$discipline->id") }}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    {{ csrf_field() }}
+                                    <div class="row">
+                                        <div class="col-md-3 col-lg-3 col-xs-3"></div>
+                                        <div class="col-md-4 col-lg-4 col-xs-4">
+                                            <button class="btn btn-sm btn-danger text-center">Видалити</button>
                                         </div>
                                         <div class="col-md-4 col-lg-4 col-xs-4"></div>
                                     </div>

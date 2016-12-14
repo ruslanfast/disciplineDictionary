@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         $disciplines = DB::table('disciplines')
                          ->join('departments', 'disciplines.department_id', '=', 'departments.id')
-                         ->select('disciplines.name', 'disciplines.academic_time', 'departments.name as depart_name')
+                         ->select('disciplines.id', 'disciplines.name', 'disciplines.academic_time', 'departments.name as depart_name')
                          ->get();
 
         return view('admin.index', ['disciplines' => $disciplines]);
