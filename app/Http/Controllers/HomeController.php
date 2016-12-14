@@ -29,6 +29,13 @@ class HomeController extends Controller
                          ->select('disciplines.id', 'disciplines.name', 'disciplines.academic_time', 'departments.name as depart_name')
                          ->get();
 
-        return view('admin.index', ['disciplines' => $disciplines]);
+        $faculties = DB::table('faculties')->get();
+
+        $departments = DB::table('departments')
+                         ->join('faculties', 'departments.faculty_id', '=', 'faculties.id')
+                         ->select('departments.id', 'departments.name', 'faculties.name as faculty_name', 'departments.faculty_id')
+                         ->get();
+
+        return view('admin.index', ['disciplines' => $disciplines, 'faculties' => $faculties, 'departments' => $departments]);
     }
 }
